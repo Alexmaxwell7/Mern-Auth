@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa';
+import { FaSignInAlt, FaSignOutAlt, FaUser, FaTv } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -27,13 +27,20 @@ function Header() {
           <FaUser />
           <Link to="/register">Register</Link>
         </li>
+        <li>
+          <FaTv />
+          <Link to="/movieDashboard">Movie</Link>
+        </li>
         {user ? (
+          <>
           <li>
             <button className="btn" onClick={onLogout}>
               <FaSignOutAlt />
               Logout
             </button>
           </li>
+          </>
+     
         ) : (
           <li>
             <FaSignInAlt />

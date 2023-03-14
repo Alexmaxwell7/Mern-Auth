@@ -5,20 +5,22 @@ import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Header from './components/Header';
-import PrivateRoute from './components/PrivateRoute';
+import MovieDetail from './components/Movie/MovieDetail/MovieDetail'
+import MovieListing from './components/Movie/MovieListing/MovieListing';
+import Home from './components/Movie/Home/Home';
 
 function App() {
   return (
     <>
       <Router>
-        <div className="container">
           <Header />
           <Routes>
             <Route path="/" element={ <Dashboard />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/movieDashboard"  element={<Home/>} />
+            <Route path="/movie/:imdbID" element={<MovieDetail />} />
           </Routes>
-        </div>
       </Router>
       <ToastContainer />
     </>

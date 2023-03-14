@@ -4,22 +4,19 @@ import { useSelector, useDispatch } from 'react-redux';
 import GoalForm from '../components/GoalForm';
 import Spinner from '../components/Spinner';
 import { getGoal, reset } from '../features/goals/goalSlice';
+import { fetchAsyncMovies } from '../features/movie/movieSlice'
 import GoalItem from '../components/GoalItem';
 
 function Dashboard() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const { user } = useSelector((state) => state.auth);
   const { goals, isError, isLoading, isSuccess, message } = useSelector(
     (state) => state.goals
   );
 
   useEffect(() => {
-
     dispatch(getGoal());
-
-
   }, [])
 
   useEffect(() => {
