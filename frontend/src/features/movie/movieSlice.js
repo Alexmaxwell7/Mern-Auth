@@ -14,9 +14,9 @@ const initialState = {
 
 export const fetchAsyncMovies = createAsyncThunk(
   "movies/fetchAsyncMovies",
-  async (_, thunkAPI) => {
+  async (movieName, thunkAPI) => {
     try {
-      return await movieService.getMovies();
+      return await movieService.getMovies(movieName);
 
     } catch (error) {
       const message =
@@ -31,9 +31,9 @@ export const fetchAsyncMovies = createAsyncThunk(
 
 export const fetchAsyncSeries = createAsyncThunk(
   "movies/fetchAsyncSeries",
-  async (_, thunkAPI) => {
+  async (seriesName, thunkAPI) => {
     try {
-      return await movieService.getSeries();
+      return await movieService.getSeries(seriesName);
 
     } catch (error) {
       const message =
@@ -46,7 +46,7 @@ export const fetchAsyncSeries = createAsyncThunk(
   }
 );
 
-export const fetchAsyncMovieOrShowDetail = createAsyncThunk(
+export const fetchAsyncDetail = createAsyncThunk(
   "movies/fetchAsyncMovieOrShowDetail",
   async (id, thunkAPI) => {
     try {
@@ -98,7 +98,7 @@ const movieSlice = createSlice({
          state.isError = true;
          state.message = action.payload;
        })
-      .addCase(fetchAsyncMovieOrShowDetail.fulfilled,(state,action)=>{
+      .addCase(fetchAsyncDetail.fulfilled,(state,action)=>{
         state.isLoading = false;
         state.isSuccess = true;
         state.selectMovieOrShow = action.payload;
@@ -109,5 +109,5 @@ const movieSlice = createSlice({
 export const { removeSelectedMovieOrShow } = movieSlice.actions;
 export const getAllMovies = (state) => state.movies.movies;
 export const getAllShows = (state) => state.movies.shows;
-export const getSelectedMovieOrShow = (state) => state.movies.selectMovieOrShow;
+export const getSelectedDetails = (state) => state.movies.selectMovieOrShow;
 export default movieSlice.reducer;

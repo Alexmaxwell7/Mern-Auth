@@ -8,9 +8,44 @@
     font-weight: 400;
   }
 }
-
-.movie-container {
+.movie-container{
+  margin: 20px;
+}
+.movie-wrapper{
+  background-color: black;
+  position: relative;
+}
+/* .movie-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   grid-gap: 15px;
+} */
+
+.search-bar {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  background-color: black;
+  position: absolute;
+}
+form {
+  display: flex;
+  justify-content: center;
+  width: 70%;
+ 
+}
+
+.search-btn {
+  padding: 0px 8px;
+  font-size: 20px;
+  cursor: pointer;
+  height: 38px;
+}
+
+input {
+  font-size: 18px;
+  width: 100%;
+  padding: 5px 5px 5px 10px;
+  height: 38px;
+  outline: none;
 }

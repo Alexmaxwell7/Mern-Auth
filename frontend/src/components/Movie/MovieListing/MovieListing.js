@@ -1,13 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import MovieCard from "../MovieCard/MovieCard";
-import {  getAllMovies, getAllShows } from '../../../features/movie/movieSlice'
+import {  getAllMovies, getAllShows, fetchAsyncMovies, fetchAsyncSeries } from '../../../features/movie/movieSlice'
 import "./MovieListing.css";
+import Slider from "react-slick";
+import { Settings } from "../../../utils/settings";
 const MovieListing = () => {
   const movies = useSelector(getAllMovies);
   const shows = useSelector(getAllShows);
-
-  console.log('datasssss', shows,movies);
+  const [term, setTerm] = useState("");
+  const dispatch = useDispatch();
+  const submitHandler = (e) => {
+    e.preventDefault();
+    if (term === "") return alert("Please enter search term!");
+    dispatch(fetchAsyncMovies(term));
+    dispatch(fetchAsyncSeries(term));
+    setTerm("");
+  };
 
   let renderMovies,
     renderShows = "";
@@ -32,14 +41,32 @@ const MovieListing = () => {
       </div>
     );
   return (
-    <div className="movie-wrapper">
+      <div className="movie-wrapper">
+      <div className="search-bar">
+        <form onSubmit={submitHandler}>
+          <input
+            type="text"
+            value={term}
+            placeholder="Search Movies or Shows"
+            onChange={(e) => setTerm(e.target.value)}
+          />
+          <button type="submit" className="search-btn">
+            search
+          </button>
+        </form>
+      </div>
       <div className="movie-list">
         <h2>Movies</h2>
-        <div className="movie-container">{renderMovies}</div>
+        <div className="movie-container">
+        <Slider {...Settings}>{renderMovies}</Slider>
+        </div>
       </div>
       <div className="show-list">
         <h2>Shows</h2>
-        <div className="movie-container">{renderShows}</div>
+        <div className="movie-container">
+        <Slider {...Settings}>{renderShows}</Slider>
+
+        </div>
       </div>
     </div>
   );

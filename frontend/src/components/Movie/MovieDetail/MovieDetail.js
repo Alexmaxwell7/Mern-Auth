@@ -3,18 +3,18 @@ import "./MovieDetail.css";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  fetchAsyncMovieOrShowDetail,
-  getSelectedMovieOrShow,
+  fetchAsyncDetail,
+  getSelectedDetails,
   removeSelectedMovieOrShow,
 } from "../../../features/movie/movieSlice";
 
 const MovieDetail = () => {
   const { imdbID } = useParams();
   const dispatch = useDispatch();
-  const data = useSelector(getSelectedMovieOrShow);
+  const data = useSelector(getSelectedDetails);
   console.log(data);
   useEffect(() => {
-    dispatch(fetchAsyncMovieOrShowDetail(imdbID));
+    dispatch(fetchAsyncDetail(imdbID));
     return () => {
       dispatch(removeSelectedMovieOrShow());
     };

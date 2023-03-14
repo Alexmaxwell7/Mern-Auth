@@ -10,26 +10,22 @@ import axios from 'axios';
 const APIKey = "542850f7";
 
 
-const getMovies = async () => {
-  const movieText = "Friends";
+const getMovies = async (movieName) => {
+  const movieText = "max";
   const response = await axios.get(
-    `https://www.omdbapi.com?apiKey=${APIKey}&s=${movieText}&type=movie`
+    `https://www.omdbapi.com?apiKey=${APIKey}&s=${movieName||movieText}&type=movie`
 
   );
 
   return response.data;
 };
 
-const getSeries = async () => {
+const getSeries = async (seriesName) => {
   const seriesText = "boys";
-  console.log('ajdfajdflajfljadjfl')
   const response = await axios.get(
-    `https://www.omdbapi.com?apiKey=${APIKey}&s=${seriesText}&type=series`
+    `https://www.omdbapi.com?apiKey=${APIKey}&s=${seriesName||seriesText}&type=series`
 
   );
-
-  console.log('seriesdata', response);
-
   return response.data;
 };
 
